@@ -25,7 +25,24 @@ end
 module BoardStep
   class << self
 
-    
+    def get_cell_neighbors(board, cell_location)
+      row = cell_location.fetch(:row)
+      column = cell_location.fetch(:column)
+      neighbors = []
+
+      neighbors << board.get_cell(row - 1, column - 1)  #NW
+      neighbors << board.get_cell(row - 1, column)      #N
+      neighbors << board.get_cell(row - 1, column + 1)  #NE
+      neighbors << board.get_cell(row, column - 1)      #W
+      neighbors << board.get_cell(row, column + 1)      #E
+      neighbors << board.get_cell(row + 1, column - 1)  #SW
+      neighbors << board.get_cell(row + 1, column)      #S
+      neighbors << board.get_cell(row + 1, column + 1)  #SE
+
+      # remove the nils
+      return neighbors.compact
+    end
+
   end
 end
 

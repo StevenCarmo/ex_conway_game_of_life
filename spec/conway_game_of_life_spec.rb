@@ -58,6 +58,14 @@ describe BoardStep do
     expect(subject.class.to_s).to eq 'Module'
   end
 
+  describe '#get_cell_neighbors' do
+    it 'returns an array of neighboring cells' do
+      expect(subject.send(:get_cell_neighbors, Board.new, {row: 0, column: 0}).length).to eq 3
+      expect(subject.send(:get_cell_neighbors, Board.new, {row: 0, column: 1}).length).to eq 5
+      expect(subject.send(:get_cell_neighbors, Board.new, {row: 1, column: 1}).length).to eq 8
+    end
+  end
+
 end
 
 describe Cell do
