@@ -25,6 +25,25 @@ end
 module BoardStep
   class << self
 
+    private
+    
+    def get_cell_action(cell, active_neighbors_count)
+      # Based On Conways's rules
+      if cell.is_active?
+        if active_neighbors_count <= 1
+          return 'deactivate'
+        elsif active_neighbors_count <= 3
+          return nil
+        else
+          return 'deactivate'
+        end
+      else
+        if active_neighbors_count == 3
+          return 'activate'
+        end
+      end
+    end
+
     def get_cell_neighbors(board, cell_location)
       row = cell_location.fetch(:row)
       column = cell_location.fetch(:column)

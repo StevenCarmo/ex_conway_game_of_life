@@ -59,6 +59,7 @@ describe BoardStep do
   end
 
   describe '#get_cell_neighbors' do
+
     it 'returns an array of neighboring cells' do
       expect(subject.send(:get_cell_neighbors, Board.new, {row: 0, column: 0}).length).to eq 3
       expect(subject.send(:get_cell_neighbors, Board.new, {row: 0, column: 1}).length).to eq 5
@@ -66,6 +67,35 @@ describe BoardStep do
     end
   end
 
+  describe '#get_cell_action' do
+    before(:context) do
+      @cell = Cell.new().activate!
+    end
+
+    context 'given cell is active with <= 1 active neighbor' do
+      it 'returns deactivate' do
+        expect(subject.send(:get_cell_action, @cell, 0)).to eq 'deactivate'
+        expect(subject.send(:get_cell_action, @cell, 1)).to eq 'deactivate'
+      end
+    end
+
+    context 'given cell is active with 2 or 3 active neighbors' do
+      it 'returns nil' do
+        expect(subject.send(:get_cell_action, @cell, 2)).to be nil
+        expect(subject.send(:get_cell_action, @cell, 3)).to be nil
+      end
+    end
+
+    context 'given cell is active with 4 to 8 active neighbors' do
+      it 'returns deactivate' do
+        expect(subject.send(:get_cell_action, @cell, 4)).to eq 'deactivate'
+        expect(subject.send(:get_cell_action, @cell, 5)).to eq 'deactivate'
+        expect(subject.send(:get_cell_action, @cell, 6)).to eq 'deactivate'
+        expect(subject.send(:get_cell_action, @cell, 7)).to eq 'deactivate'
+        expect(subject.send(:get_cell_action, @cell, 8)).to eq 'deactivate'
+      end
+    end
+  end
 end
 
 describe Cell do
