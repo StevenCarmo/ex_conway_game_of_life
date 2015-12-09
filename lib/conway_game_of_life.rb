@@ -26,7 +26,18 @@ module BoardStep
   class << self
 
     private
-    
+
+    def get_next_cell_action(board, cell_location)
+      row = cell_location.fetch(:row)
+      column = cell_location.fetch(:column)
+      cell = board.get_cell(row, column)
+      active_neighbors_count = 0
+
+      get_cell_neighbors(board, cell_location).each {|cell_neighbor| active_neighbors_count += 1 if cell_neighbor.is_active? }
+
+      return {cell: cell, action: get_cell_action(cell, active_neighbors_count)}
+    end
+
     def get_cell_action(cell, active_neighbors_count)
       # Based On Conways's rules
       if cell.is_active?

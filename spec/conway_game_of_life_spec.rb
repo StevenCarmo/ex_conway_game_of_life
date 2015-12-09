@@ -67,6 +67,13 @@ describe BoardStep do
     end
   end
 
+  describe '#get_next_cell_action' do
+    it 'returns a hash of the cell and action' do
+      expect(subject.send(:get_next_cell_action, Board.new, {row: 0, column: 0})[:cell]).to be_a_kind_of(Cell)
+      expect(subject.send(:get_next_cell_action, Board.new, {row: 0, column: 0})[:action]).to eq(nil).or eq('deactivate').or eq('activate')
+    end
+  end
+
   describe '#get_cell_action' do
     before(:context) do
       @cell = Cell.new().activate!
@@ -96,6 +103,7 @@ describe BoardStep do
       end
     end
   end
+
 end
 
 describe Cell do
