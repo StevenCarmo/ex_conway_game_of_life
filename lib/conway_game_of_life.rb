@@ -6,6 +6,18 @@
 
 class Board
 
+  attr_reader :rows, :columns
+
+  def initialize( options={} )
+    @rows = options[:rows] || 20
+    @columns = options[:columns] || 20
+    @cells = Array.new(@rows) { Array.new(@columns) } #Add cells
+  end
+
+  def get_cells
+    return @cells
+  end
+
 end
 
 class Cell
