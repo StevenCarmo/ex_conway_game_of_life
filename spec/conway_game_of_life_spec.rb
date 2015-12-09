@@ -49,11 +49,14 @@ describe Board do
     end
   end
 
-  # describe '#generate_temp_cells' do
-  #   it 'creates an array from :rows :columns ' do
-  #     expect(subject.send(:generate_temp_cells)).to be_a_kind_of(Array)
-  #   end
-  # end
+end
+
+describe BoardStep do
+  let(:subject) { BoardStep }
+
+  it "is a Module" do
+    expect(subject.class.to_s).to eq 'Module'
+  end
 
 end
 

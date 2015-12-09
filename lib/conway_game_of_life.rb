@@ -22,6 +22,13 @@ class Board
 
 end
 
+module BoardStep
+  class << self
+
+    
+  end
+end
+
 class Cell
 
   def initialize(active=false)
