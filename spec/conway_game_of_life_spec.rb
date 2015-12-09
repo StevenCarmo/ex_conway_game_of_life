@@ -19,10 +19,6 @@ describe Board do
 
   describe '.initialize' do
 
-    it 'generates a cells array' do
-      expect(subject.get_cells).to be_a_kind_of(Array)
-    end
-
     context 'when initialized without options' do
       it 'generates a default row count' do
         expect(subject.rows).to be > 0
@@ -33,7 +29,31 @@ describe Board do
       end
     end
 
+    it 'generates an array of Cells' do
+      expect(subject.cells).to be_a_kind_of(Array)
+      expect(subject.cells[0][0]).to be_a_kind_of(Cell)
+    end
+
   end
+
+  describe '#get_cell' do
+    context 'when given a valid cell location' do
+      it 'returns the cell' do
+        expect(subject.get_cell(1,1)).to be_a_kind_of(Cell)
+      end
+    end
+    context 'when given a invalid cell location' do
+      it 'returns nil' do
+        expect(subject.get_cell(11111,1)).to be_nil
+      end
+    end
+  end
+
+  # describe '#generate_temp_cells' do
+  #   it 'creates an array from :rows :columns ' do
+  #     expect(subject.send(:generate_temp_cells)).to be_a_kind_of(Array)
+  #   end
+  # end
 
 end
 

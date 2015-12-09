@@ -6,16 +6,18 @@
 
 class Board
 
-  attr_reader :rows, :columns
+  attr_reader :rows, :columns, :cells
 
   def initialize( options={} )
     @rows = options[:rows] || 20
     @columns = options[:columns] || 20
-    @cells = Array.new(@rows) { Array.new(@columns) } #Add cells
+    @cells = Array.new(@rows) { Array.new(@columns) { Cell.new } }
   end
 
-  def get_cells
-    return @cells
+  def get_cell(row, column)
+    if (0..(@rows - 1)) === row && (0..(@columns - 1)) === column
+      return @cells[row][column]
+    end
   end
 
 end
@@ -30,7 +32,7 @@ class Cell
     return true if @active == true
     false
   end
-  
+
   def activate!
     @active = true
     return self
