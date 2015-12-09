@@ -22,7 +22,7 @@ class Board
 
     if cell.is_active? and active_neighbors_count < 2
       cell.deactivate!
-    
+
 
     elsif cell.is_active?
       if active_neighbors_count == 2 or active_neighbors_count == 3
@@ -41,7 +41,6 @@ class Board
   # Any live cell with two or three live neighbours lives on to the next generation.
   # Any live cell with more than three live neighbours dies, as if by over-population.
   # Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-
 
 end
 
@@ -69,7 +68,6 @@ class Cell
   end
 
 end
-
 
 #  Round
 class BoardState

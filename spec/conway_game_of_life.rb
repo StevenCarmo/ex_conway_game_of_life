@@ -1,4 +1,4 @@
-require_relative '../lib/board.rb'
+require_relative '../lib/conway_game_of_life.rb'
 
 describe Board do
   let(:subject) {Board.new }
