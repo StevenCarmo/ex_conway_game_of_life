@@ -22,4 +22,23 @@ end
 
 class Cell
 
+  def initialize(active=false)
+    @active = active
+  end
+
+  def is_active?
+    return true if @active == true
+    false
+  end
+  
+  def activate!
+    @active = true
+    return self
+  end
+
+  def deactivate!
+    @active = false
+    return self
+  end
+
 end
