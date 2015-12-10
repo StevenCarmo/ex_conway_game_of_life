@@ -25,7 +25,33 @@ end
 module BoardStep
   class << self
 
+    def next(board)
+      cell_actions = build_next_step(board)
+
+      cell_actions.each do |cell_action|
+        cell_action[:cell].activate! if cell_action[:action] == 'activate'
+        cell_action[:cell].deactivate! if cell_action[:action] == 'deactivate'
+      end
+
+      return true
+    end
+
     private
+
+    def build_next_step(board)
+      cell_actions = []
+
+      (0..(board.rows - 1)).each do |row|
+        (0..(board.columns - 1)).each do |column|
+          next_cell_action = get_next_cell_action(board, {row: row, column: column})
+          unless next_cell_action[:action].nil?
+            cell_actions << next_cell_action
+          end
+        end
+      end
+
+      return cell_actions
+    end
 
     def get_next_cell_action(board, cell_location)
       row = cell_location.fetch(:row)
