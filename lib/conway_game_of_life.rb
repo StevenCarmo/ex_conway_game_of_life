@@ -20,6 +20,26 @@ class Board
     end
   end
 
+  def seed_cells(seed_count)
+    for i in 0...seed_count
+      get_cell(rand(0...@rows),rand(0...@columns)).activate!
+    end
+  end
+
+  # Quick example of board printing
+  def print_board
+    (0..(@rows - 1)).each do |row|
+      puts ''
+      (0..(@columns - 1)).each do |column|
+        if get_cell(row, column).is_active?
+          print 'O '
+        else
+          print '. '
+        end
+      end
+    end
+  end
+
 end
 
 module BoardStep
